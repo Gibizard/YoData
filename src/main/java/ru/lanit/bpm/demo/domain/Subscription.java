@@ -1,4 +1,4 @@
-package domain;
+package ru.lanit.bpm.demo.domain;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;

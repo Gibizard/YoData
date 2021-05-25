@@ -1,13 +1,11 @@
-package domain;
+package ru.lanit.bpm.demo.domain;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor

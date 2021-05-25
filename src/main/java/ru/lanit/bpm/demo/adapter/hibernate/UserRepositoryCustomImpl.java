@@ -1,7 +1,7 @@
-package adapter.hibernate;
+package ru.lanit.bpm.demo.adapter.hibernate;
 
-import app.repo.UserRepositoryCustom;
-import domain.User;
+import ru.lanit.bpm.demo.app.repo.UserRepositoryCustom;
+import ru.lanit.bpm.demo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

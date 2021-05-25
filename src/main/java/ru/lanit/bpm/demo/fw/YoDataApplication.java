@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = "demo.domain")
+@EntityScan(basePackages = "demo.ru.lanit.bpm.demo.domain")
 public class YoDataApplication {
 
     public static void main(String[] args) {
