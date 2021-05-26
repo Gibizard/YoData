@@ -9,18 +9,22 @@
  * reproduced in any form by any means without prior written authorization of
  * LANIT and its licensors, if any.
  *
- * $
+ * PageService$
  */
-package ru.lanit.bpm.demo.app.repo;
+package ru.lanit.bpm.demo.app;
 
-import ru.lanit.bpm.demo.domain.ParsingResult;
-import ru.lanit.bpm.demo.domain.User;
+import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
+import ru.lanit.bpm.demo.domain.Page;
 
 import java.util.List;
-import java.util.Map;
 
-public interface ParsingResultRepositoryCustom {
-/*
-    Map<ParsingResult, List<User>> fetchUnsentResult();
-*/
+/**
+ * todo Document type PageService
+ */
+public interface PageService {
+    void addPage(String name, String url, String parsingXPath) throws DuplicateEntityException;
+
+    List<Page> findAvailablePages();
+
+    void deletePage(Long id);
 }

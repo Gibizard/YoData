@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import java.util.Map;
 
 @Component
-public class UserRepositoryCustomImpl implements UserRepositoryCustom {
+public class UserRepositoryImpl implements UserRepositoryCustom {
     @Autowired
     EntityManager entityManager;
     @Override

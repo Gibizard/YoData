@@ -9,18 +9,19 @@
  * reproduced in any form by any means without prior written authorization of
  * LANIT and its licensors, if any.
  *
- * $
+ * SubscriptionService$
  */
 package ru.lanit.bpm.demo.app.repo;
 
-import ru.lanit.bpm.demo.domain.ParsingResult;
-import ru.lanit.bpm.demo.domain.User;
+import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
+import ru.lanit.bpm.demo.domain.Subscription;
 
 import java.util.List;
-import java.util.Map;
 
-public interface ParsingResultRepositoryCustom {
-/*
-    Map<ParsingResult, List<User>> fetchUnsentResult();
-*/
+/**
+ * todo Document type SubscriptionService
+ */
+public interface SubscriptionService {
+    List<Subscription> findSubscriptionByUser(String userLogin);
+    void addSubscirption(String userLogin, String pageId) throws EntityDoesnotExistException;
 }

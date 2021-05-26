@@ -9,18 +9,20 @@
  * reproduced in any form by any means without prior written authorization of
  * LANIT and its licensors, if any.
  *
- * $
+ * UserService$
  */
-package ru.lanit.bpm.demo.app.repo;
+package ru.lanit.bpm.demo.app;
 
-import ru.lanit.bpm.demo.domain.ParsingResult;
+import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
+import ru.lanit.bpm.demo.domain.Subscription;
 import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
-import java.util.Map;
 
-public interface ParsingResultRepositoryCustom {
-/*
-    Map<ParsingResult, List<User>> fetchUnsentResult();
-*/
+/**
+ * todo Document type UserService
+ */
+public interface UserService {
+
+    User findUserByLogin(String userLogin) throws EntityDoesnotExistException;
 }

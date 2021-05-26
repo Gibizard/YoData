@@ -9,18 +9,20 @@
  * reproduced in any form by any means without prior written authorization of
  * LANIT and its licensors, if any.
  *
- * $
+ * SubscriptionRepo$
  */
 package ru.lanit.bpm.demo.app.repo;
 
-import ru.lanit.bpm.demo.domain.ParsingResult;
-import ru.lanit.bpm.demo.domain.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import ru.lanit.bpm.demo.domain.Subscription;
 
 import java.util.List;
-import java.util.Map;
 
-public interface ParsingResultRepositoryCustom {
-/*
-    Map<ParsingResult, List<User>> fetchUnsentResult();
-*/
+/**
+ * todo Document type SubscriptionRepo
+ */
+@Repository
+public interface SubscriptionRepository extends CrudRepository<Subscription, Long> {
+    List<Subscription> findByUserLogin(String userLogin);
 }

@@ -3,9 +3,17 @@ package ru.lanit.bpm.demo.fw;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan(basePackages = "demo.ru.lanit.bpm.demo.domain")
+@EntityScan(basePackages = "ru.lanit.bpm.demo.domain")
+@EnableJpaRepositories(basePackages = {
+        "ru.lanit.bpm.demo.adapter.hibernate",
+        "ru.lanit.bpm.demo.app.repo"
+})
+
+@ComponentScan(basePackages = "ru.lanit.bpm.demo")
 public class YoDataApplication {
 
     public static void main(String[] args) {
