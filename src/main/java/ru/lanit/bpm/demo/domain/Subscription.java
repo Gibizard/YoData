@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Table(name = "subscriptions")
 public class Subscription {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_subscription_id")
+    @SequenceGenerator(name = "sq_subscription_id", allocationSize = 1)
     private Long id;
     @OneToOne
     @JoinColumn(name = "user_id")

@@ -13,11 +13,13 @@
  */
 package ru.lanit.bpm.demo.app;
 
+import lombok.NonNull;
+import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
 import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
-import ru.lanit.bpm.demo.domain.Subscription;
 import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * todo Document type UserService
@@ -25,4 +27,12 @@ import java.util.List;
 public interface UserService {
 
     User findUserByLogin(String userLogin) throws EntityDoesnotExistException;
+
+    Optional<User> getUserByTelegramId(String telegramId);
+
+    void addUser(String text, String s, @NonNull String firstName, String lastName, String toString) throws DuplicateEntityException;
+
+    void updatePassword(String login, String text) throws EntityDoesnotExistException;
+
+    List<User> getAllUsers();
 }

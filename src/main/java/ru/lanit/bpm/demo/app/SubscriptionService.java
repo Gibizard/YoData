@@ -11,10 +11,12 @@
  *
  * SubscriptionService$
  */
-package ru.lanit.bpm.demo.app.repo;
+package ru.lanit.bpm.demo.app;
 
 import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
+import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.Subscription;
+import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
 
@@ -23,5 +25,8 @@ import java.util.List;
  */
 public interface SubscriptionService {
     List<Subscription> findSubscriptionByUser(String userLogin);
-    void addSubscirption(String userLogin, String pageId) throws EntityDoesnotExistException;
+    
+/*
+    void addSubscirption(String userLogin, Long pageId) throws EntityDoesnotExistException;
+*/
 }

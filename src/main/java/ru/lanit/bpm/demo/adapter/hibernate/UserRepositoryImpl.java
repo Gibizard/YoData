@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class UserRepositoryImpl implements UserRepositoryCustom {
@@ -15,5 +16,10 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     @Override
     public Map<String, User> custom() {
         return null;
+    }
+
+    @Override
+    public Optional<User> findByTelegramId(String telegramId) {
+        return findByTelegramId(telegramId);
     }
 }

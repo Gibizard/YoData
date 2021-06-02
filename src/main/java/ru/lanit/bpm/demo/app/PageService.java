@@ -17,6 +17,7 @@ import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
 import ru.lanit.bpm.demo.domain.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * todo Document type PageService
@@ -27,4 +28,6 @@ public interface PageService {
     List<Page> findAvailablePages();
 
     void deletePage(Long id);
+
+    Optional<Page> findPage(Long id);
 }

@@ -21,6 +21,7 @@ import ru.lanit.bpm.demo.app.repo.PageRepository;
 import ru.lanit.bpm.demo.domain.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * todo Document type PageServiceImpl
@@ -51,5 +52,10 @@ public class PageServiceImpl implements PageService {
     @Override
     public void deletePage(Long id) {
         pageRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Page> findPage(Long id) {
+        return pageRepository.findById(id);
     }
 }

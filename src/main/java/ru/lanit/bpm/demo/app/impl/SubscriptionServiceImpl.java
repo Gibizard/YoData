@@ -16,11 +16,12 @@ package ru.lanit.bpm.demo.app.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.lanit.bpm.demo.app.PageService;
 import ru.lanit.bpm.demo.app.UserService;
 import ru.lanit.bpm.demo.app.repo.PageRepository;
 import ru.lanit.bpm.demo.app.repo.SubscriptionRepository;
-import ru.lanit.bpm.demo.app.repo.SubscriptionService;
-import ru.lanit.bpm.demo.app.repo.UserRepository;
+import ru.lanit.bpm.demo.app.SubscriptionService;
+import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.Subscription;
 import ru.lanit.bpm.demo.domain.User;
 
@@ -34,7 +35,7 @@ import java.util.List;
 public class SubscriptionServiceImpl implements SubscriptionService {
     private final SubscriptionRepository subscriptionRepository;
     private final UserService userService;
-    private final PageRepository pageRepository;
+    private final PageService pageService;
 
     @Transactional(readOnly = true)
     @Override
@@ -42,13 +43,14 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionRepository.findByUserLogin(userLogin);
     }
 
+/*
     @Override
     @Transactional
     public void addSubscirption(String userLogin, Long pageId) throws EntityDoesnotExistException {
         User user = userService.findUserByLogin(userLogin);
-         pageRepository.findById(pageId).orElseThrow(new EntityDoesnotExistException("not found"));
-        subscriptionRepository.save(new Subscription("1", userLogin,pageId));
-        Subscription subscription =
-        subscriptionRepository.save(subscription);
+        Page page = pageService.findPageById(pageId);
+        pageService.findById(pageId).orElseThrow(new EntityDoesnotExistException("not found"));
+        subscriptionRepository.save (new Subscription(user, page);
     }
+*/
 }
