@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.PageService;
 import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
 import ru.lanit.bpm.demo.app.repo.PageRepository;
+import ru.lanit.bpm.demo.app.repo.UserRepository;
 import ru.lanit.bpm.demo.domain.Page;
 
 import static org.aspectj.bridge.MessageUtil.fail;
@@ -20,6 +21,8 @@ class YoDataApplicationTests {
     PageService pageService;
     @Autowired
     PageRepository pageRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Transactional
     @Test
@@ -39,6 +42,7 @@ class YoDataApplicationTests {
 
             //Act
             Page page = pageRepository.findByName("name").orElseThrow();
+            assertEquals(userRepository.findByTelegramId("Zuzler").get().getLastName(), "Гиба");
         } catch (DuplicateEntityException e) {
             return;
         }
