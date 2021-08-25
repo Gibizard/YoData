@@ -36,8 +36,8 @@ public class ParsingResultRepositoryCustomImpl implements ParsingResultRepositor
         for (ParsingResult pr : prList) {
             Long pageId = pr.getPage().getId();
             List<User> uList =
-                    entityManager.createQuery("select u from User u join Subscription s on u.login = s.user join s.page p where p.id = ?1", User.class)
-                            .setParameter(1, pageId)
+                    entityManager.createQuery("select u from User u join Subscription s on u.login = s.user join s.page p where p.id =" + pageId, User.class)
+                            //.setParameter(1, pageId)
                             .getResultList();
             result.put(pr, uList);
         }

@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.PageService;
+import ru.lanit.bpm.demo.app.SubscriptionService;
+import ru.lanit.bpm.demo.app.UserService;
 import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
+import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
 import ru.lanit.bpm.demo.app.repo.PageRepository;
 import ru.lanit.bpm.demo.app.repo.ParsingResultRepository;
 import ru.lanit.bpm.demo.app.repo.UserRepository;
@@ -28,17 +31,32 @@ class YoDataApplicationTests {
     @Autowired
     PageRepository pageRepository;
     @Autowired
+    UserService userService;
+    @Autowired
     UserRepository userRepository;
     @Autowired
     ParsingResultRepository parsingResultRepository;
+    @Autowired
+    SubscriptionService subscriptionService;
 
     @Transactional
     @Test
-    void contextLoads() throws DuplicateEntityException {
+    void contextLoads() throws DuplicateEntityException, EntityDoesnotExistException {
         pageService.addPage("name", "url", "xpath");
-
         Page page = pageRepository.findByName("name").orElseThrow();
         assertEquals("name", page.getName());
+        log.info("PAGE: {}", page.getName());
+
+        log.info("ALL PAGES: {}", pageService.findAvailablePages().toString());
+
+        userService.addUser("test1", "pass", "Pupa", "Lupa", "puplup");
+        log.info("ADDED USER: {}", userService.findUserByLogin("test1").toString());
+
+        subscriptionService.findSubscriptionByUser("DGiba")
+                .forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
+
+        pageService.deletePage(2L);
+        log.info("PAGE SHOULD NOT EXIST: {}", pageService.findPage(2L));
     }
 
     @Transactional

@@ -26,7 +26,5 @@ import java.util.List;
 public interface SubscriptionService {
     List<Subscription> findSubscriptionByUser(String userLogin);
     
-/*
-    void addSubscirption(String userLogin, Long pageId) throws EntityDoesnotExistException;
-*/
+    void addSubscription(String userLogin, Long pageId) throws EntityDoesnotExistException;
 }

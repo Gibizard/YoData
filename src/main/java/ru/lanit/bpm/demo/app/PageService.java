@@ -29,5 +29,5 @@ public interface PageService {
 
     void deletePage(Long id);
 
-    Optional<Page> findPage(Long id);
+    Optional<Page> findPageById(Long id);
 }

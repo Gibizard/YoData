@@ -21,16 +21,13 @@ import ru.lanit.bpm.demo.domain.User;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * todo Document type UserService
- */
 public interface UserService {
 
     User findUserByLogin(String userLogin) throws EntityDoesnotExistException;
 
     Optional<User> getUserByTelegramId(String telegramId);
 
-    void addUser(String text, String s, @NonNull String firstName, String lastName, String toString) throws DuplicateEntityException;
+    void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId) throws DuplicateEntityException;
 
     void updatePassword(String login, String text) throws EntityDoesnotExistException;
 

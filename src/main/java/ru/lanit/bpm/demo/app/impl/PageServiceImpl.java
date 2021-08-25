@@ -23,9 +23,6 @@ import ru.lanit.bpm.demo.domain.Page;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * todo Document type PageServiceImpl
- */
 @Service
 @RequiredArgsConstructor
 public class PageServiceImpl implements PageService {
@@ -55,7 +52,7 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
-    public Optional<Page> findPage(Long id) {
+    public Optional<Page> findPageById(Long id) {
         return pageRepository.findById(id);
     }
 }

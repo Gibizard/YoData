@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.PageService;
 import ru.lanit.bpm.demo.app.UserService;
-import ru.lanit.bpm.demo.app.repo.PageRepository;
 import ru.lanit.bpm.demo.app.repo.SubscriptionRepository;
 import ru.lanit.bpm.demo.app.SubscriptionService;
 import ru.lanit.bpm.demo.domain.Page;
@@ -26,6 +25,7 @@ import ru.lanit.bpm.demo.domain.Subscription;
 import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * todo Document type SubscriptionServiceImpl
@@ -43,14 +43,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionRepository.findByUserLogin(userLogin);
     }
 
-/*
     @Override
     @Transactional
-    public void addSubscirption(String userLogin, Long pageId) throws EntityDoesnotExistException {
+    public void addSubscription(String userLogin, Long pageId) throws EntityDoesnotExistException {
         User user = userService.findUserByLogin(userLogin);
-        Page page = pageService.findPageById(pageId);
-        pageService.findById(pageId).orElseThrow(new EntityDoesnotExistException("not found"));
+        Optional<Page> page = pageService.findPageById(pageId);
+        pageService.findPageById(pageId).orElseThrow(new EntityDoesnotExistException("not found"));
         subscriptionRepository.save (new Subscription(user, page);
     }
-*/
 }

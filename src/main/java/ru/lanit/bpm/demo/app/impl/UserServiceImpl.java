@@ -25,9 +25,6 @@ import ru.lanit.bpm.demo.domain.User;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * todo Document type UserServiceImpl
- */
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(String text, String s, @NonNull String firstName, String lastName, String toString) {
-        userRepository.save(new User());
+    public void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId) {
+        userRepository.save(new User(login, password, firstName, lastName, telegramId));
     }
 
     @Override

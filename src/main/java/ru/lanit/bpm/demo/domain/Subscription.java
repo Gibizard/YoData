@@ -23,4 +23,9 @@ public class Subscription {
     @ManyToOne
     @JoinColumn(name = "page_id")
     private Page page;
+
+    public Subscription(User user, Page page) {
+        this.user = user;
+        this.page = page;
+    }
 }
