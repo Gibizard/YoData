@@ -8,8 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.PageService;
 import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
 import ru.lanit.bpm.demo.app.repo.PageRepository;
+import ru.lanit.bpm.demo.app.repo.ParsingResultRepository;
 import ru.lanit.bpm.demo.app.repo.UserRepository;
 import ru.lanit.bpm.demo.domain.Page;
+import ru.lanit.bpm.demo.domain.ParsingResult;
+import ru.lanit.bpm.demo.domain.User;
+
+import java.util.List;
+import java.util.Map;
 
 import static org.aspectj.bridge.MessageUtil.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,6 +29,8 @@ class YoDataApplicationTests {
     PageRepository pageRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ParsingResultRepository parsingResultRepository;
 
     @Transactional
     @Test
@@ -48,5 +56,12 @@ class YoDataApplicationTests {
         }
         //Assert
         fail("Должны но не поймали ошибку");
+    }
+
+    @Transactional
+    @Test
+    void contextLoads_pr(){
+        Map<ParsingResult, List<User>> unsentParsingResults = parsingResultRepository.fetchUnsentResult();
+        log.info(unsentParsingResults.toString());
     }
 }

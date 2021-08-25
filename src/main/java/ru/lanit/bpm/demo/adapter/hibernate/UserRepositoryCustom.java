@@ -1,4 +1,4 @@
-package ru.lanit.bpm.demo.app.repo;
+package ru.lanit.bpm.demo.adapter.hibernate;
 
 import ru.lanit.bpm.demo.domain.User;
 

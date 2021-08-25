@@ -1,26 +1,20 @@
 package ru.lanit.bpm.demo.adapter.hibernate;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.query.Query;
-import ru.lanit.bpm.demo.app.repo.ParsingResultRepositoryCustom;
-import ru.lanit.bpm.demo.app.repo.UserRepositoryCustom;
 import ru.lanit.bpm.demo.domain.ParsingResult;
 import ru.lanit.bpm.demo.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Tuple;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class ParsingResultsRepositoryImpl implements ParsingResultRepositoryCustom {
-/*
+public class ParsingResultRepositoryCustomImpl implements ParsingResultRepositoryCustom {
     private final EntityManager entityManager;
+/*
     @Override
     public Map<ParsingResult, List<User>> fetchUnsentResult() {
         return entityManager.createQuery(
@@ -35,19 +29,18 @@ public class ParsingResultsRepositoryImpl implements ParsingResultRepositoryCust
     }
 */
 
-/*
     @Override
     public Map<ParsingResult, List<User>> fetchUnsentResult() {
         List<ParsingResult> prList = entityManager.createQuery("select pr from ParsingResult pr where pr.sent = false", ParsingResult.class).getResultList();
         Map<ParsingResult, List<User>> result = new HashMap<>();
         for (ParsingResult pr : prList) {
-            Long id = pr.getPage().getId();
+            Long pageId = pr.getPage().getId();
             List<User> uList =
                     entityManager.createQuery("select u from User u join Subscription s on u.login = s.user join s.page p where p.id = ?1", User.class)
-                            .setParameter(1, id)
+                            .setParameter(1, pageId)
                             .getResultList();
             result.put(pr, uList);
         }
+        return result;
     }
-*/
 }

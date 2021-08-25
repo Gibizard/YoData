@@ -13,17 +13,16 @@
  */
 package ru.lanit.bpm.demo.app.repo;
 
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import ru.lanit.bpm.demo.adapter.hibernate.ParsingResultRepositoryCustom;
 import ru.lanit.bpm.demo.domain.ParsingResult;
-import ru.lanit.bpm.demo.domain.User;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
 
 @Repository
-public interface ParsingResultRepository extends CrudRepository<ParsingResult, BigInteger>,ParsingResultRepositoryCustom {
+public interface ParsingResultRepository extends CrudRepository<ParsingResult, BigInteger>, ParsingResultRepositoryCustom, JpaRepository<ParsingResult, BigInteger> {
     List<ParsingResult> findParsingResultsBySent(boolean sent);
 }

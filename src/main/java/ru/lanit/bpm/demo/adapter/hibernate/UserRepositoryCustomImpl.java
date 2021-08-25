@@ -1,6 +1,5 @@
 package ru.lanit.bpm.demo.adapter.hibernate;
 
-import ru.lanit.bpm.demo.app.repo.UserRepositoryCustom;
 import ru.lanit.bpm.demo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class UserRepositoryImpl implements UserRepositoryCustom {
+public class UserRepositoryCustomImpl implements UserRepositoryCustom {
     @Autowired
     EntityManager entityManager;
     @Override

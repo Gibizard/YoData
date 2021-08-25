@@ -11,7 +11,7 @@
  *
  * $
  */
-package ru.lanit.bpm.demo.app.repo;
+package ru.lanit.bpm.demo.adapter.hibernate;
 
 import ru.lanit.bpm.demo.domain.ParsingResult;
 import ru.lanit.bpm.demo.domain.User;
@@ -20,7 +20,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface ParsingResultRepositoryCustom {
-/*
     Map<ParsingResult, List<User>> fetchUnsentResult();
-*/
 }
