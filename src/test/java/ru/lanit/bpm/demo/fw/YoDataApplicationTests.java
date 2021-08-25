@@ -56,7 +56,11 @@ class YoDataApplicationTests {
                 .forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
 
         pageService.deletePage(2L);
-        log.info("PAGE SHOULD NOT EXIST: {}", pageService.findPage(2L));
+        log.info("PAGE SHOULD NOT EXIST: {}", pageService.findPageById(2L));
+
+        subscriptionService.addSubscription("DGiba", 1L);
+        subscriptionService.findSubscriptionByUser("DGiba")
+                .forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
     }
 
     @Transactional
