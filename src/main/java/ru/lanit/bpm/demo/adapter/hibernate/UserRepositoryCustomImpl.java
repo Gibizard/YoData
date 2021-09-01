@@ -21,4 +21,6 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
     public Optional<User> findByTelegramId(String telegramId) {
         return findByTelegramId(telegramId);
     }
+
+
 }

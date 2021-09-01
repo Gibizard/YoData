@@ -15,13 +15,14 @@ import ru.lanit.bpm.demo.app.repo.ParsingResultRepository;
 import ru.lanit.bpm.demo.app.repo.UserRepository;
 import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.ParsingResult;
+import ru.lanit.bpm.demo.domain.Subscription;
 import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
 import java.util.Map;
 
 import static org.aspectj.bridge.MessageUtil.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = YoDataApplication.class)
 @Slf4j
@@ -42,25 +43,81 @@ class YoDataApplicationTests {
     @Transactional
     @Test
     void contextLoads() throws DuplicateEntityException, EntityDoesnotExistException {
+
+    }
+
+    @Transactional
+    @Test
+    void addUser() throws DuplicateEntityException, EntityDoesnotExistException {
+        User user = new User("unit_test_user", "qwerty", "Ivan", "Ivanov", "22");
+        userService.addUser(user);
+        assertSame(userService.findUserByLogin("unit_test_user").orElseThrow().getFistName(), user.getFistName());
+    }
+
+    @Transactional
+    @Test
+    void addPage() throws DuplicateEntityException {
         pageService.addPage("name", "url", "xpath");
         Page page = pageRepository.findByName("name").orElseThrow();
         assertEquals("name", page.getName());
         log.info("PAGE: {}", page.getName());
+    }
 
-        log.info("ALL PAGES: {}", pageService.findAvailablePages().toString());
+    @Test
+    void findAllPages() {
+        assertEquals(2, (long) pageService.findAvailablePages().size());
+    }
 
-        userService.addUser("test1", "pass", "Pupa", "Lupa", "puplup");
-        log.info("ADDED USER: {}", userService.findUserByLogin("test1").toString());
+    @Test
+    void findUserSubscriptions(){
+        List<Subscription> subList = subscriptionService.findSubscriptionByUser("DGiba");
+        subList.forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
+        assertEquals(1, subList.size());
+    }
 
-        subscriptionService.findSubscriptionByUser("DGiba")
-                .forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
-
+    @Transactional
+    @Test
+    void deletePage(){
         pageService.deletePage(2L);
-        log.info("PAGE SHOULD NOT EXIST: {}", pageService.findPageById(2L));
+        assertFalse(pageService.findPageById(2L).isPresent());
+    }
 
+    @Transactional
+    @Test
+    void addSub() throws EntityDoesnotExistException {
         subscriptionService.addSubscription("DGiba", 1L);
-        subscriptionService.findSubscriptionByUser("DGiba")
-                .forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
+        assertEquals(2, subscriptionService.findSubscriptionByUser("DGiba").size());
+    }
+
+    @Transactional
+    @Test
+    void deleteSub(){
+        subscriptionService.deleteSubscription(3L);
+        assertFalse(subscriptionService.findSubscriptionById(3L).isPresent());
+    }
+
+    @Test
+    void findUserByLogin() throws EntityDoesnotExistException {
+        assertTrue(userService.findUserByLogin("DGiba").isPresent());
+    }
+
+    @Transactional
+    @Test
+    void updatePassword() throws EntityDoesnotExistException {
+        String newPass = "new_pass";
+        userService.updatePassword("DGiba", newPass);
+        assertEquals(newPass, userService.findUserByLogin("DGiba").orElseThrow().getPassword());
+    }
+
+    @Transactional
+    @Test
+    void deleteUser() throws EntityDoesnotExistException {
+        userService.deleteUser("DGiba");
+    }
+
+    @Test
+    void userCheck(){
+        assertTrue(userService.checkPasswordByLogin("DGiba", "12345"));
     }
 
     @Transactional

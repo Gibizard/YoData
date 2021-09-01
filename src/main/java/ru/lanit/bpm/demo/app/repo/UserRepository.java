@@ -16,4 +16,6 @@ public interface UserRepository extends CrudRepository<User, String>, UserReposi
     List<User> findSpecialUsers(String lastName);
 
     //Map<ParsingResult, List<User>>
+
+    boolean existsByLoginAndPassword(String login, String password);
 }

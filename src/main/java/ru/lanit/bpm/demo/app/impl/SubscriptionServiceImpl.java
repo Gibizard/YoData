@@ -44,10 +44,21 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
     @Override
+    public Optional<Subscription> findSubscriptionById(Long subId) {
+        return subscriptionRepository.findById(subId);
+    }
+
+    @Override
     @Transactional
     public void addSubscription(String userLogin, Long pageId) throws EntityDoesnotExistException {
-        User user = userService.findUserByLogin(userLogin);
+        User user = userService.findUserByLogin(userLogin).orElseThrow();
         Page page = pageService.findPageById(pageId).orElseThrow(() -> new EntityDoesnotExistException("not found"));
         subscriptionRepository.save (new Subscription(user, page));
+    }
+
+    @Override
+    @Transactional
+    public void deleteSubscription(Long subId) {
+        subscriptionRepository.deleteById(subId);
     }
 }

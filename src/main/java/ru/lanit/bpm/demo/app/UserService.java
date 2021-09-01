@@ -14,6 +14,7 @@
 package ru.lanit.bpm.demo.app;
 
 import lombok.NonNull;
+import org.springframework.data.repository.CrudRepository;
 import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
 import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
 import ru.lanit.bpm.demo.domain.User;
@@ -23,13 +24,19 @@ import java.util.Optional;
 
 public interface UserService {
 
-    User findUserByLogin(String userLogin) throws EntityDoesnotExistException;
+    Optional<User> findUserByLogin(String userLogin) throws EntityDoesnotExistException;
 
     Optional<User> getUserByTelegramId(String telegramId);
+
+    void addUser(User newUser) throws DuplicateEntityException;
 
     void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId) throws DuplicateEntityException;
 
     void updatePassword(String login, String text) throws EntityDoesnotExistException;
 
     List<User> getAllUsers();
+
+    void deleteUser(String login) throws EntityDoesnotExistException;
+
+    boolean checkPasswordByLogin(String login, String password);
 }

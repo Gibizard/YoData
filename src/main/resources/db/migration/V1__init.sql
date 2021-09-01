@@ -33,6 +33,8 @@ CREATE TABLE subscriptions
     user_id VARCHAR(50)
 );
 
+CREATE SEQUENCE sq_subscription_id START WITH 1 INCREMENT BY 1;
+
 INSERT INTO subscriptions
 values (1, 1, 'IvIv'),
        (2, 1, 'Iiiiiigor'),

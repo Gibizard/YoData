@@ -33,14 +33,19 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public User findUserByLogin(String userLogin) throws EntityDoesnotExistException {
-        return userRepository.findById(userLogin).orElseThrow(() -> new EntityDoesnotExistException("User: " + userLogin+ " not found"));
+    public Optional<User> findUserByLogin(String userLogin) {
+        return userRepository.findById(userLogin);
     }
 
     @Transactional
     @Override
     public Optional<User> getUserByTelegramId(String telegramId) {
         return userRepository.findByTelegramId(telegramId);
+    }
+
+    @Override
+    public void addUser(User newUser) throws DuplicateEntityException {
+        userRepository.save(newUser);
     }
 
     @Override
@@ -58,5 +63,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public void deleteUser(String login) throws EntityDoesnotExistException{
+        if (findUserByLogin(login).isPresent()){
+            userRepository.deleteById(login);
+        } else throw new EntityDoesnotExistException("No user " + login +" to delete");
+    }
+
+    @Override
+    public boolean checkPasswordByLogin(String login, String password) {
+        return userRepository.existsByLoginAndPassword(login, password);
     }
 }
