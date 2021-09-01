@@ -9,5 +9,5 @@ spring:
 server:
   port: 8888
 bot:
-  token: ""
-  username: ""
+  token: 1741756202:AAEXvS0OCon5jQAb_zO85rHrE_q0ZSz2S-0
+  username: YoData

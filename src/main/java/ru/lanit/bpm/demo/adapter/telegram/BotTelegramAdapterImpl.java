@@ -16,27 +16,27 @@ package ru.lanit.bpm.demo.adapter.telegram;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.lanit.bpm.demo.adapter.telegram.handlers.CommandHandler;
 import ru.lanit.bpm.demo.app.UserService;
-import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
-import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
 import ru.lanit.bpm.demo.domain.User;
 
+import java.util.Map;
 import java.util.Optional;
 
-/**
- * todo Document type BotTelegramAdapterImpl
- */
-
+@Service
 @RequiredArgsConstructor
 @Slf4j
 public class BotTelegramAdapterImpl extends TelegramLongPollingBot implements TelegramAdapter {
     private static final String START_COMMAND = "/start";
 
     private final UserService userService;
+
+    private final Map<String, CommandHandler> messageHandlers;
 
     @Value("${bot.token}")
     private String botToken;
@@ -55,21 +55,19 @@ public class BotTelegramAdapterImpl extends TelegramLongPollingBot implements Te
 
     @Override
     public void onUpdateReceived(Update update) {
-        log.info("UpdateRecieved: {}", update);
+        log.info("UpdateReceived: {}", update);
         SendMessage response = new SendMessage();
         if (update.hasMessage()) {
             Long telegramId = update.getMessage().getFrom().getId();
             response.setChatId(telegramId.toString());
             Optional<User> user = userService.getUserByTelegramId(telegramId.toString());
             if (START_COMMAND.equals(update.getMessage().getText())) {
-                // предлагаем зарегаться
-                handleStartCommand(response, update, user);
+                messageHandlers.get("startTelegramCommandHandler").handleMessage(update, user, response);
             } else {
-                // обрабатываем инфу
                 if (user.isPresent()) {
-                    handleNewPassword(response, update, user);
+                    messageHandlers.get("updatePasswordTelegramCommandHandler").handleMessage(update, user, response);
                 } else {
-                    createUser(update, response);
+                    messageHandlers.get("createUserTelegramCommandHandler").handleMessage(update, user, response);
                 }
             }
             try {
@@ -79,39 +77,6 @@ public class BotTelegramAdapterImpl extends TelegramLongPollingBot implements Te
             }
         }
 
-    }
-
-    private void createUser(Update update, SendMessage response) {
-        Long telegramId = update.getMessage().getFrom().getId();
-        try {
-            userService.addUser(
-                    update.getMessage().getText(),
-                    "",
-                    update.getMessage().getFrom().getFirstName(),
-                    update.getMessage().getFrom().getLastName(),
-                    telegramId.toString()
-            );
-            response.setText("User added. Enter password");
-        } catch (DuplicateEntityException e) {
-            response.setText("This login already exists");
-        }
-    }
-
-    private void handleNewPassword(SendMessage response, Update update, Optional<User> user) {
-        try {
-            userService.updatePassword(user.orElseThrow().getLogin(), update.getMessage().getText());
-            response.setText("Password changed, send another if you want to change it");
-        } catch (EntityDoesnotExistException e) {
-            log.error("Unexpected error");
-        }
-    }
-
-    private void handleStartCommand(SendMessage response, Update update, Optional<User> user) {
-        if (user.isPresent()) {
-            response.setText("Введите пароль");
-        } else {
-            response.setText("Введите логин");
-        }
     }
 
     @Override

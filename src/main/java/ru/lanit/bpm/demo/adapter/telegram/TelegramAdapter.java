@@ -13,10 +13,6 @@
  */
 package ru.lanit.bpm.demo.adapter.telegram;
 
-/**
- * todo Document type BotAdapter
- */
 public interface TelegramAdapter {
     void sendMessage(String telegramId, String message);
-
 }

@@ -18,20 +18,15 @@ import org.jsoup.nodes.Document;
 import us.codecraft.xsoup.Xsoup;
 
 import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 
-/**
- * todo Document type JsoupPageParser
- */
 public class JsoupPageParser implements PageParser {
     @Override
-    public String getUrlContentt(String url, String xPath) throws IOException {
+    public String getUrlContent(String url, String xPath) throws IOException {
         Document document = Jsoup.connect(url).get();
-        return evaluateXpath(document, xPath);
+        return evaluateXPath(document, xPath);
     }
 
-    private String evaluateXpath(Document document, String xPath) {
+    private String evaluateXPath(Document document, String xPath) {
         return Xsoup.compile(xPath).evaluate(document).get();
     }
 }

@@ -15,9 +15,6 @@ package ru.lanit.bpm.demo.adapter.pageparsing;
 
 import java.io.IOException;
 
-/**
- * todo Document type PageParser
- */
 public interface PageParser {
-    String getUrlContentt(String url, String xPath) throws IOException;
+    String getUrlContent(String url, String xPath) throws IOException;
 }
