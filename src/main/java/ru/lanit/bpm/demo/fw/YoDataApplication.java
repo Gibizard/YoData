@@ -1,5 +1,6 @@
 package ru.lanit.bpm.demo.fw;
 
+import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 })
 
 @ComponentScan(basePackages = "ru.lanit.bpm.demo")
+@EnableProcessApplication
 public class YoDataApplication {
 
     public static void main(String[] args) {

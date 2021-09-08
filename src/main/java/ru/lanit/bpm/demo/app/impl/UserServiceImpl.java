@@ -18,11 +18,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.UserService;
+import ru.lanit.bpm.demo.app.repo.ParsingResultRepository;
 import ru.lanit.bpm.demo.app.repo.SubscriptionRepository;
 import ru.lanit.bpm.demo.app.repo.UserRepository;
+import ru.lanit.bpm.demo.domain.ParsingResult;
 import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -30,6 +33,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final SubscriptionRepository subscriptionRepository;
+    private final ParsingResultRepository parsingResultRepository;
 
     @Transactional(readOnly = true)
     @Override
@@ -75,5 +79,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkPasswordByLogin(String login, String password) {
         return userRepository.existsByLoginAndPassword(login, password);
+    }
+
+    @Override
+    public Map<ParsingResult, List<User>> fetchUnsentResults() {
+        return parsingResultRepository.fetchUnsentResult();
     }
 }

@@ -23,4 +23,15 @@ public class ParsingResult {
     private Instant parsingDateTime;
     private String result;
     private boolean sent;
+
+    public ParsingResult(Page page, Instant parsingDateTime, String result, boolean sent) {
+        this.page = page;
+        this.parsingDateTime = parsingDateTime;
+        this.result = result;
+        this.sent = sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
 }

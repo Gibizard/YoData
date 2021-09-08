@@ -11,3 +11,11 @@ server:
 bot:
   token: 1741756202:AAEXvS0OCon5jQAb_zO85rHrE_q0ZSz2S-0
   username: YoData
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: admin
+      email: admin@admin.ru
+    job-execution:
+      enabled: true

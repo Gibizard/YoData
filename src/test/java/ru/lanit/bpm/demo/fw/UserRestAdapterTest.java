@@ -26,9 +26,6 @@ import ru.lanit.bpm.demo.domain.User;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
 
-/**
- * todo Document type UserRestAdapterTest
- */
 @ExtendWith(MockitoExtension.class)
 public class UserRestAdapterTest {
     UserRestAdapter userRestAdapter;

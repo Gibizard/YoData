@@ -17,9 +17,11 @@ import lombok.NonNull;
 import org.springframework.data.repository.CrudRepository;
 import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
 import ru.lanit.bpm.demo.app.impl.EntityDoesnotExistException;
+import ru.lanit.bpm.demo.domain.ParsingResult;
 import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface UserService {
@@ -39,4 +41,6 @@ public interface UserService {
     void deleteUser(String login) throws EntityDoesnotExistException;
 
     boolean checkPasswordByLogin(String login, String password);
+
+    Map<ParsingResult, List<User>> fetchUnsentResults();
 }

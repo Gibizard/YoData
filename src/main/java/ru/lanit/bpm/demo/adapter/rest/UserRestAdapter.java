@@ -22,9 +22,6 @@ import ru.lanit.bpm.demo.domain.User;
 
 import java.util.List;
 
-/**
- * todo Document type UserRestAdapter
- */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/yodata/admin/users")

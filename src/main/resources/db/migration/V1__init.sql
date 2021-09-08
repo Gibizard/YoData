@@ -26,6 +26,11 @@ INSERT INTO pages
 values (1, 'Советы по садоводству', 'https://sad.com', 'nice_path'),
        (2, 'Voyti v It', 'https://it.journal.com', 'bad_path');
 
+/*
+https://www.cbr.ru/
+
+//div[@class='main-indicator_rate'][2]/div[contains(@class,'mono-num')][2]/text()
+*/
 CREATE TABLE subscriptions
 (
     id      BIGINT PRIMARY KEY,
