@@ -13,11 +13,11 @@
  */
 package ru.lanit.bpm.demo.adapter.pageparsing;
 
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component
 public interface PageParser {
     String getUrlContent(String url, String xPath) throws IOException;
 }

@@ -12,4 +12,8 @@ public interface ParsingResultService {
     void saveResult(Page page, String result);
 
     void markResultSent(ParsingResult parsingResult);
+
+    int unsentResultsCount();
+
+    boolean isResultChanged(Long pageId, String result);
 }

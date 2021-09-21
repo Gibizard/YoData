@@ -25,4 +25,6 @@ import java.util.List;
 @Repository
 public interface ParsingResultRepository extends CrudRepository<ParsingResult, BigInteger>, ParsingResultRepositoryCustom, JpaRepository<ParsingResult, BigInteger> {
     List<ParsingResult> findParsingResultsBySent(boolean sent);
+
+    ParsingResult findFirstByIdOrderByParsingDateTime(Long id);
 }

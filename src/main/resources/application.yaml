@@ -19,3 +19,4 @@ camunda:
       email: admin@admin.ru
     job-execution:
       enabled: true
+  parse-timer: R/PT10S

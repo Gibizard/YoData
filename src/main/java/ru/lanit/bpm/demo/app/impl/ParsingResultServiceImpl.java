@@ -7,6 +7,8 @@ import ru.lanit.bpm.demo.app.repo.ParsingResultRepository;
 import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.ParsingResult;
 
+import java.time.Instant;
+
 @Service
 @RequiredArgsConstructor
 public class ParsingResultServiceImpl implements ParsingResultService {
@@ -14,12 +16,22 @@ public class ParsingResultServiceImpl implements ParsingResultService {
 
     @Override
     public void saveResult(Page page, String result) {
-        // TODO: 08.09.2021  parsingResultRepository.save(new ParsingResult("","",""));
+        parsingResultRepository.save(new ParsingResult(page, Instant.now(), result, false));
     }
 
     @Override
     public void markResultSent(ParsingResult parsingResult) {
         parsingResult.setSent(true);
         parsingResultRepository.save(parsingResult);
+    }
+
+    @Override
+    public int unsentResultsCount() {
+        return parsingResultRepository.fetchUnsentResult().size();
+    }
+
+    @Override
+    public boolean isResultChanged(Long pageId, String result) {
+        return !parsingResultRepository.findFirstByIdOrderByParsingDateTime(pageId).getResult().equals(result);
     }
 }

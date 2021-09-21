@@ -15,10 +15,12 @@ package ru.lanit.bpm.demo.adapter.pageparsing;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.stereotype.Component;
 import us.codecraft.xsoup.Xsoup;
 
 import java.io.IOException;
 
+@Component
 public class JsoupPageParser implements PageParser {
     @Override
     public String getUrlContent(String url, String xPath) throws IOException {

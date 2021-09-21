@@ -22,6 +22,11 @@ public class ParsePagesNotifyUsers implements JavaDelegate {
     private final ParsingResultService parsingResultService;
     private final TelegramAdapter telegramAdapter;
 
+    /**
+     * Достает все результаты парсинга, требующие отправки, и список пользователей, которым их нужно отправить.
+     * Отправляет каждому пользователю в телеграм результат парсинга.
+     * Ставит пометку о том, что результат отправлен и отправлять его пока больше не требуется.
+     */
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         log.info("Parsing completed, now notify");

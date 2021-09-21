@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/yodata/admin/subscriptions")
-public class SubscriptionRestAdapter {
+@RequestMapping("/yodata/admin/parsingResults")
+public class ParsingResultRestController {
 }

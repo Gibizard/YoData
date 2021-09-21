@@ -42,12 +42,6 @@ class YoDataApplicationTests {
 
     @Transactional
     @Test
-    void contextLoads() throws DuplicateEntityException, EntityDoesnotExistException {
-
-    }
-
-    @Transactional
-    @Test
     void addUser() throws DuplicateEntityException, EntityDoesnotExistException {
         User user = new User("unit_test_user", "qwerty", "Ivan", "Ivanov", "22");
         userService.addUser(user);
