@@ -23,8 +23,8 @@ CREATE TABLE pages
 CREATE SEQUENCE sq_pages_id START WITH 1 INCREMENT BY 1;
 
 INSERT INTO pages
-values (1, 'Советы по садоводству', 'https://sad.com', 'nice_path'),
-       (2, 'Voyti v It', 'https://it.journal.com', 'bad_path');
+values (1, 'Советы по садоводству', 'https://www.cbr.ru/', '//div[@class=''main-indicator_rate''][2]/div[contains(@class,''mono-num'')][2]/text()'),
+       (2, 'Voyti v It', 'https://www.cbr.ru/', '//div[@class=''main-indicator_rate''][2]/div[contains(@class,''mono-num'')][2]/text()');
 
 /*
 https://www.cbr.ru/
@@ -54,7 +54,9 @@ CREATE TABLE parsing_results
     sent              BOOLEAN
 );
 
-INSERT INTO parsing_results
+CREATE SEQUENCE sq_parsing_results_id START WITH 1 INCREMENT BY 1;
+
+/*INSERT INTO parsing_results
 values (1, 1, null, 'text 1', true),
        (2, 1, null, 'text 2', false),
-       (3, 2, null, 'text 3', false);
+       (3, 2, null, 'text 3', false);*/

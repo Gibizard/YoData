@@ -11,13 +11,15 @@
  *
  * UserRestAdapterTest$
  */
-package ru.lanit.bpm.demo.fw;
+package ru.lanit.bpm.demo.adapter.rest;
 
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.adapter.rest.UserRestController;
@@ -31,9 +33,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
 
+@SpringBootTest(classes = UserRestController.class)
 @ExtendWith(MockitoExtension.class)
+@RequiredArgsConstructor
 public class UserRestControllerTest {
-    UserRestController userRestController;
+    private final UserRestController userRestController;
     @Mock
     UserService userService;
 

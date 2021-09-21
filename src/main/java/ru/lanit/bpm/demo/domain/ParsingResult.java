@@ -15,7 +15,8 @@ import java.time.Instant;
 @Table(name = "parsing_results")
 public class ParsingResult {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_parsing_results_id")
+    @SequenceGenerator(name = "sq_parsing_results_id", allocationSize = 1)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "page_id")

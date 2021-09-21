@@ -69,7 +69,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/updatePassword/{login};{password}")
+    @GetMapping("/checkPassword/{login};{password}")
     public ResponseEntity<String> checkPassword(@PathVariable String login, @PathVariable String password) throws EntityDoesnotExistException {
         if (userService.findUserByLogin(login).isPresent()) {
             if (userService.checkPasswordByLogin(login, password)) {

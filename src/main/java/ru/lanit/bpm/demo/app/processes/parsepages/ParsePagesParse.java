@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Component("parseDelegate")
-public class ParsePageParse implements JavaDelegate {
+public class ParsePagesParse implements JavaDelegate {
     private final PageService pageService;
     private final PageParser pageParser;
     private final ParsingResultService parsingResultService;

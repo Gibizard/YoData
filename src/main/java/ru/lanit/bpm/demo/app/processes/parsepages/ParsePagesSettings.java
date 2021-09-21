@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
-@Component("parsePageSettings")
-public class ParsePageSettings {
-    @Value("${camunda.parseTimer}")
+@Component("parsePagesSettings")
+public class ParsePagesSettings {
+    @Value("${camunda.parse-timer}")
     public String timer;
 
     public String getTimer() {

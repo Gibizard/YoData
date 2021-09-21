@@ -32,6 +32,9 @@ public class ParsingResultServiceImpl implements ParsingResultService {
 
     @Override
     public boolean isResultChanged(Long pageId, String result) {
-        return !parsingResultRepository.findFirstByIdOrderByParsingDateTime(pageId).getResult().equals(result);
+        ParsingResult parsingResult = parsingResultRepository.findFirstByIdOrderByParsingDateTime(pageId);
+        if (parsingResult != null) {
+            return !parsingResult.getResult().equals(result);
+        } else return false;
     }
 }

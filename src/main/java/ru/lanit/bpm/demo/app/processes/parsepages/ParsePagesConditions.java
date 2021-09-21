@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import ru.lanit.bpm.demo.app.ParsingResultService;
 
 @RequiredArgsConstructor
-@Component("parsePageConditions")
-public class ParsePageConditions {
+@Component("parsePagesConditions")
+public class ParsePagesConditions {
     private final ParsingResultService parsingResultService;
 
     public int unsentResultsCount(){
