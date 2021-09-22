@@ -56,7 +56,7 @@ CREATE TABLE parsing_results
 
 CREATE SEQUENCE sq_parsing_results_id START WITH 1 INCREMENT BY 1;
 
-/*INSERT INTO parsing_results
-values (1, 1, null, 'text 1', true),
-       (2, 1, null, 'text 2', false),
-       (3, 2, null, 'text 3', false);*/
+INSERT INTO parsing_results
+values (1, 1, '2021-09-17 18:47:52.069', 'text 1', true),
+       (2, 1, '2021-09-20 18:47:52.069', 'text 2', false),
+       (3, 2, '2021-09-21 18:47:52.069', 'text 3', false);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.PageService;
+import ru.lanit.bpm.demo.app.ParsingResultService;
 import ru.lanit.bpm.demo.app.SubscriptionService;
 import ru.lanit.bpm.demo.app.UserService;
 import ru.lanit.bpm.demo.app.impl.DuplicateEntityException;
@@ -39,13 +40,15 @@ class YoDataApplicationTests {
     ParsingResultRepository parsingResultRepository;
     @Autowired
     SubscriptionService subscriptionService;
+    @Autowired
+    ParsingResultService parsingResultService;
 
     @Transactional
     @Test
     void addUser() throws DuplicateEntityException, EntityDoesnotExistException {
         User user = new User("unit_test_user", "qwerty", "Ivan", "Ivanov", "22");
         userService.addUser(user);
-        assertSame(userService.findUserByLogin("unit_test_user").orElseThrow().getFistName(), user.getFistName());
+        assertSame(userService.findUserByLogin("unit_test_user").orElseThrow().getFirstName(), user.getFirstName());
     }
 
     @Transactional
@@ -63,7 +66,7 @@ class YoDataApplicationTests {
     }
 
     @Test
-    void findUserSubscriptions(){
+    void findUserSubscriptions() {
         List<Subscription> subList = subscriptionService.findSubscriptionByUser("DGiba");
         subList.forEach(context -> log.info("SUBSCRIPTIONS OF DGIBA: {}", context.getPage().getName()));
         assertEquals(1, subList.size());
@@ -71,7 +74,7 @@ class YoDataApplicationTests {
 
     @Transactional
     @Test
-    void deletePage(){
+    void deletePage() {
         pageService.deletePage(2L);
         assertFalse(pageService.findPageById(2L).isPresent());
     }
@@ -79,13 +82,13 @@ class YoDataApplicationTests {
     @Transactional
     @Test
     void addSub() throws EntityDoesnotExistException {
-        subscriptionService.addSubscription("DGiba", 1L);
+        subscriptionService.addSubscription("DGiba", 2L);
         assertEquals(2, subscriptionService.findSubscriptionByUser("DGiba").size());
     }
 
     @Transactional
     @Test
-    void deleteSub(){
+    void deleteSub() {
         subscriptionService.deleteSubscription(3L);
         assertFalse(subscriptionService.findSubscriptionById(3L).isPresent());
     }
@@ -110,31 +113,19 @@ class YoDataApplicationTests {
     }
 
     @Test
-    void userCheck(){
+    void userCheck() {
         assertTrue(userService.checkPasswordByLogin("DGiba", "12345"));
     }
 
     @Transactional
     @Test
-    void contextLoads_exception() throws DuplicateEntityException {
-        try {
-            //Arrange
-            pageService.addPage("name", "url", "xpath");
-
-            //Act
-            Page page = pageRepository.findByName("name").orElseThrow();
-            assertEquals(userRepository.findByTelegramId("Zuzler").get().getLastName(), "Гиба");
-        } catch (DuplicateEntityException e) {
-            return;
-        }
-        //Assert
-        fail("Должны но не поймали ошибку");
-    }
-
-    @Transactional
-    @Test
-    void contextLoads_pr(){
-        Map<ParsingResult, List<User>> unsentParsingResults = parsingResultRepository.fetchUnsentResult();
-        log.info(unsentParsingResults.toString());
+    void unsentResultsCount() {
+        Map<ParsingResult, List<User>> parsingResultListMap = parsingResultRepository.fetchUnsentResult();
+        parsingResultListMap.forEach((pr, users) -> {
+            log.info(pr.toString());
+            log.info("Users: ");
+            users.forEach(user -> log.info(" - " + user.getLogin()));
+        });
+        assertEquals(2, parsingResultService.unsentResultsCount());
     }
 }

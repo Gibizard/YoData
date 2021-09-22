@@ -37,7 +37,7 @@ public class UserRestController {
     @PutMapping("/add")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         try {
-            userService.addUser(user.getLogin(), user.getPassword(), user.getFistName(), user.getLastName(), user.getTelegramId());
+            userService.addUser(user.getLogin(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getTelegramId());
             return ResponseEntity.ok("success");
         } catch (DuplicateEntityException e) {
             return ResponseEntity.badRequest().body("Duplicate Entity: " + e.getMessage());

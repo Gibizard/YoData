@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "ru.lanit.bpm.demo.adapter.hibernate",
         "ru.lanit.bpm.demo.app.repo"
 })
-
 @ComponentScan(basePackages = "ru.lanit.bpm.demo")
 @EnableProcessApplication
 public class YoDataApplication {

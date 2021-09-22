@@ -51,9 +51,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     @Transactional
     public void addSubscription(String userLogin, Long pageId) throws EntityDoesnotExistException {
-        User user = userService.findUserByLogin(userLogin).orElseThrow();
-        Page page = pageService.findPageById(pageId).orElseThrow(() -> new EntityDoesnotExistException("not found"));
-        subscriptionRepository.save (new Subscription(user, page));
+        User user = userService.findUserByLogin(userLogin).orElseThrow(() -> new EntityDoesnotExistException("User not found"));
+        Page page = pageService.findPageById(pageId).orElseThrow(() -> new EntityDoesnotExistException("Page not found"));
+        subscriptionRepository.save(new Subscription(user, page));
     }
 
     @Override
