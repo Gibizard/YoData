@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public Optional<User> getUserByTelegramId(String telegramId) {
-        return userRepository.findByTelegramId(telegramId);
+        return userRepository.findUserByTelegramId(telegramId);
     }
 
     @Override

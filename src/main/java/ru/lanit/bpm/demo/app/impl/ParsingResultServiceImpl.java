@@ -35,6 +35,6 @@ public class ParsingResultServiceImpl implements ParsingResultService {
         ParsingResult parsingResult = parsingResultRepository.findFirstByIdOrderByParsingDateTime(pageId);
         if (parsingResult != null) {
             return !parsingResult.getResult().equals(result);
-        } else return false;
+        } else return true;
     }
 }

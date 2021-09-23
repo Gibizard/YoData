@@ -8,7 +8,7 @@ CREATE TABLE users
 );
 
 INSERT INTO users
-values ('DGiba', '12345', 'Дмитрий', 'Гиба', 'zuzler'),
+values ('DGiba', '12345', 'Дмитрий', 'Гиба', 'zuzlen'),
        ('Iiiiiigor', '5555', 'Игорь', 'Князь', 'knyaz228'),
        ('IvIv', '54321', 'Иваныч', 'Иванов', '78686');
 
@@ -42,8 +42,8 @@ CREATE SEQUENCE sq_subscription_id START WITH 1 INCREMENT BY 1;
 
 INSERT INTO subscriptions
 values (1, 1, 'IvIv'),
-       (2, 1, 'Iiiiiigor'),
-       (3, 2, 'DGiba');
+       (3, 1, 'Iiiiiigor'),
+       (2, 2, 'Zuzlen');
 
 CREATE TABLE parsing_results
 (
@@ -56,7 +56,7 @@ CREATE TABLE parsing_results
 
 CREATE SEQUENCE sq_parsing_results_id START WITH 1 INCREMENT BY 1;
 
-INSERT INTO parsing_results
+/*INSERT INTO parsing_results
 values (1, 1, '2021-09-17 18:47:52.069', 'text 1', true),
        (2, 1, '2021-09-20 18:47:52.069', 'text 2', false),
-       (3, 2, '2021-09-21 18:47:52.069', 'text 3', false);
+       (3, 2, '2021-09-21 18:47:52.069', 'text 3', false);*/

@@ -32,7 +32,7 @@ public class ParsePagesNotifyUsers implements JavaDelegate {
         log.info("Parsing completed, now notify");
         Map<ParsingResult, List<User>> parsingResultListMap = userService.fetchUnsentResults();
         parsingResultListMap.forEach((parsingResult, users) -> {
-            users.forEach(user -> {
+            users.forEach(user -> { //TODO Надо чтобы сеттинг отправки был только при успешной отправке
                 telegramAdapter.sendMessage(user.getTelegramId(), "Parsing results: " + parsingResult.getResult());
             });
             parsingResultService.markResultSent(parsingResult);

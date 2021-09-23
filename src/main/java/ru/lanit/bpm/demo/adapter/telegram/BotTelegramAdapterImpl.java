@@ -88,7 +88,7 @@ public class BotTelegramAdapterImpl extends TelegramLongPollingBot implements Te
         try {
             execute(newMessage);
         } catch (TelegramApiException e) {
-            log.error("Unable to send message", e);
+            log.error("Unable to send message to: " + telegramId, e);
         }
     }
 }

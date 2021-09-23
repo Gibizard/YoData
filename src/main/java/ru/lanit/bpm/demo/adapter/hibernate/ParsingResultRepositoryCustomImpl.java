@@ -14,20 +14,6 @@ import java.util.Map;
 @Component
 public class ParsingResultRepositoryCustomImpl implements ParsingResultRepositoryCustom {
     private final EntityManager entityManager;
-/*
-    @Override
-    public Map<ParsingResult, List<User>> fetchUnsentResult() {
-        return entityManager.createQuery(
-                "select parsingResult, user from ParsingResult as parsingResult " +
-                        "inner join Subscription subscription on (subscription.page = parsingResult.page) " +
-                        "inner join User as user on (user.login = subscription.user)" +
-                "where parsingResult.sent = false ", Tuple.class)
-                .getResultStream()
-                .collect(Collectors.toMap(tuple -> ((ParsingResult) tuple.get(0),tuple -> ((List<User>)tuple.get(2)) )
-                //.collect(Collectors.toMap(row -> ((ParsingResult) row.get("")),)
-        );
-    }
-*/
 
     @Override
     public Map<ParsingResult, List<User>> fetchUnsentResult() {
