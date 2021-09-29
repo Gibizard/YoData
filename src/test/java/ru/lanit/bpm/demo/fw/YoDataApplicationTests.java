@@ -43,6 +43,7 @@ class YoDataApplicationTests {
     @Autowired
     ParsingResultService parsingResultService;
 
+/*
     @Transactional
     @Test
     void addUser() throws DuplicateEntityException, EntityDoesnotExistException {
@@ -128,4 +129,5 @@ class YoDataApplicationTests {
         });
         assertEquals(2, parsingResultService.unsentResultsCount());
     }
+*/
 }

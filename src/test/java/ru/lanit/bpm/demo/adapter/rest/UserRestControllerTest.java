@@ -48,6 +48,7 @@ public class UserRestControllerTest {
     }
 */
 
+/*
     @Test
     @Transactional
     void createUser() {
@@ -81,4 +82,5 @@ public class UserRestControllerTest {
     void getUser() throws EntityDoesnotExistException {
         assertNotNull(userRestController.getUser("DGiba"));
     }
+*/
 }
