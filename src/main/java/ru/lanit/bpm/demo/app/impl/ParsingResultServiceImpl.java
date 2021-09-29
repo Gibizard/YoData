@@ -8,6 +8,7 @@ import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.ParsingResult;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,15 @@ public class ParsingResultServiceImpl implements ParsingResultService {
         if (parsingResult != null) {
             return !parsingResult.getResult().equals(result);
         } else return true;
+    }
+
+    @Override
+    public void removeResults() {
+        parsingResultRepository.deleteAll();
+    }
+
+    @Override
+    public List<ParsingResult> getAllResults() {
+        return parsingResultRepository.findAll();
     }
 }

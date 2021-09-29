@@ -27,4 +27,6 @@ public interface ParsingResultRepository extends CrudRepository<ParsingResult, B
     List<ParsingResult> findParsingResultsBySent(boolean sent);
 
     ParsingResult findFirstByIdOrderByParsingDateTime(Long id);
+
+    void deleteAll();
 }

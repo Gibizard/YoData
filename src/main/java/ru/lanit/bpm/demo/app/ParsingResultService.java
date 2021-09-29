@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import ru.lanit.bpm.demo.app.repo.ParsingResultRepository;
 import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.ParsingResult;
+import ru.lanit.bpm.demo.domain.User;
+
+import java.util.List;
 
 //@RequiredArgsConstructor
 public interface ParsingResultService {
@@ -16,4 +19,8 @@ public interface ParsingResultService {
     int unsentResultsCount();
 
     boolean isResultChanged(Long pageId, String result);
+
+    void removeResults();
+
+    List<ParsingResult> getAllResults();
 }
