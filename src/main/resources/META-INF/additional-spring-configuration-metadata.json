@@ -14,5 +14,15 @@
       "name": "camunda.parse-timer",
       "type": "java.lang.String",
       "description": "Description for camunda.parse-timer."
+    },
+    {
+      "name": "kafka.bootstrapAddress",
+      "type": "java.lang.String",
+      "description": "Description for kafka.bootstrapAddress."
+    },
+    {
+      "name": "kafka.retention",
+      "type": "java.lang.String",
+      "description": "Description for kafka.retention."
     }
   ] }

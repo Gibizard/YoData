@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+import ru.lanit.bpm.demo.adapter.kafka.ParsingResultToSend;
 import ru.lanit.bpm.demo.adapter.telegram.TelegramAdapter;
 import ru.lanit.bpm.demo.app.ParsingResultService;
 import ru.lanit.bpm.demo.app.UserService;
@@ -21,6 +23,7 @@ public class ParsePagesNotifyUsers implements JavaDelegate {
     private final UserService userService;
     private final ParsingResultService parsingResultService;
     private final TelegramAdapter telegramAdapter;
+    private final KafkaTemplate<String, ParsingResultToSend> kafkaTemplate;
 
     /**
      * Достает все результаты парсинга, требующие отправки, и список пользователей, которым их нужно отправить.
@@ -33,9 +36,13 @@ public class ParsePagesNotifyUsers implements JavaDelegate {
         Map<ParsingResult, List<User>> parsingResultListMap = userService.fetchUnsentResults();
         parsingResultListMap.forEach((parsingResult, users) -> {
             users.forEach(user -> { //TODO Надо чтобы сеттинг отправки был только при успешной отправке
-                telegramAdapter.sendMessage(user.getTelegramId(), "Parsing results: " + parsingResult.getResult());
+                sendMessage(parsingResult.getResult(), user.getTelegramId());
             });
             parsingResultService.markResultSent(parsingResult);
         });
+    }
+
+    public void sendMessage(String parsingResult, String telegramId) {
+        kafkaTemplate.send("parsingResultsToSend", new ParsingResultToSend(parsingResult, telegramId));
     }
 }

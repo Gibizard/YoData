@@ -6,6 +6,10 @@ spring:
   h2:
     console:
       enabled: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    template:
+      default-topic: parsingResultsToSend
 server:
   port: 8888
 bot:
@@ -20,3 +24,6 @@ camunda:
     job-execution:
       enabled: true
   parse-timer: R/PT10S
+kafka:
+  bootstrapAddress:  localhost:9092
+  retention: 1d
