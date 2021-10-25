@@ -15,6 +15,7 @@ package ru.lanit.bpm.demo.app.impl;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.bpm.demo.app.UserService;
@@ -30,6 +31,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final SubscriptionRepository subscriptionRepository;
@@ -53,8 +55,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId) {
-        userRepository.save(new User(login, password, firstName, lastName, telegramId));
+    public void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId, String role) {
+        userRepository.save(new User(login, password, firstName, lastName, telegramId, role));
+    }
+
+    @Override
+    public void updateUser(String login, String password, @NonNull String firstName, String lastName, String telegramId, String role) throws EntityDoesnotExistException {
+        log.info("Password and role to update: " + password + ", " + role);
+        Optional<User> oldUser = findUserByLogin(login);
+        if (oldUser.isPresent()) {
+            oldUser.get().setPassword(password);
+            oldUser.get().setRole(role);
+            userRepository.save(oldUser.get());
+            log.info("User with login: " + login + " successfully updated: " + oldUser.toString());
+        } else {
+            log.info("No user with login: " + login + " to change");
+        }
     }
 
     @Override
@@ -70,10 +86,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String login) throws EntityDoesnotExistException{
-        if (findUserByLogin(login).isPresent()){
+    public void deleteUser(String login) throws EntityDoesnotExistException {
+        if (findUserByLogin(login).isPresent()) {
             userRepository.deleteById(login);
-        } else throw new EntityDoesnotExistException("No user " + login +" to delete");
+        } else throw new EntityDoesnotExistException("No user " + login + " to delete");
     }
 
     @Override

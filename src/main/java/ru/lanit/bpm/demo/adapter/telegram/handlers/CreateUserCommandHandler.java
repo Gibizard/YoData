@@ -22,9 +22,10 @@ public class CreateUserCommandHandler implements CommandHandler{
         String firstName = update.getMessage().getFrom().getFirstName();
         String lastName = update.getMessage().getFrom().getLastName();
         String login = update.getMessage().getText();
+        String role = "USER";
 
         try {
-            userService.addUser(login, "", firstName, lastName, id);
+            userService.addUser(login, "", firstName, lastName, id, role);
             response.setText("Введите пароль");
         } catch (DuplicateEntityException e) {
             response.setText("Пользователь с таким логином уже существует");

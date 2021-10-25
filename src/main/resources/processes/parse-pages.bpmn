@@ -34,7 +34,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1vt10eb" sourceRef="Gateway_115a0o2" targetRef="Event_08j0ctu" />
     <bpmn:sequenceFlow id="Flow_1r83xll" sourceRef="Gateway_027obv8" targetRef="Gateway_115a0o2">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${parsePagesConditions.unsentResultsCount()&lt;1}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${parsePagesConditions.unsentResultsCount()&lt;5}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">

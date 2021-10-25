@@ -4,13 +4,14 @@ CREATE TABLE users
     password    VARCHAR(50)  NOT NULL,
     first_name  VARCHAR(250) NOT NULL,
     last_name   VARCHAR(250) NOT NULL,
-    telegram_id VARCHAR(250) NOT NULL
+    telegram_id VARCHAR(250) NOT NULL,
+    role VARCHAR(250) NOT NULL
 );
 
 INSERT INTO users
-values ('DGiba', '12345', 'Дмитрий', 'Гиба', 'zuzlen'),
-       ('Iiiiiigor', '5555', 'Игорь', 'Князь', 'knyaz228'),
-       ('IvIv', '54321', 'Иваныч', 'Иванов', '78686');
+values ('DGiba', '12345', 'Дмитрий', 'Гиба', 'zuzlen', 'ADMIN'),
+       ('Iiiiiigor', '5555', 'Игорь', 'Князь', 'knyaz228', 'USER'),
+       ('IvIv', '54321', 'Иваныч', 'Иванов', '78686', 'USER');
 
 CREATE TABLE pages
 (

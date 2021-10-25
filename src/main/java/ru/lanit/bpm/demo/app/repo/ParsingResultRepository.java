@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.lanit.bpm.demo.adapter.hibernate.ParsingResultRepositoryCustom;
+import ru.lanit.bpm.demo.domain.Page;
 import ru.lanit.bpm.demo.domain.ParsingResult;
 
 import java.math.BigInteger;
@@ -26,7 +27,7 @@ import java.util.List;
 public interface ParsingResultRepository extends CrudRepository<ParsingResult, BigInteger>, ParsingResultRepositoryCustom, JpaRepository<ParsingResult, BigInteger> {
     List<ParsingResult> findParsingResultsBySent(boolean sent);
 
-    ParsingResult findFirstByIdOrderByParsingDateTime(Long id);
+    ParsingResult findFirstByPageOrderByParsingDateTime(Page page);
 
     void deleteAll();
 }

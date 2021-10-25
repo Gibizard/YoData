@@ -32,7 +32,9 @@ public interface UserService {
 
     void addUser(User newUser) throws DuplicateEntityException;
 
-    void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId) throws DuplicateEntityException;
+    void addUser(String login, String password, @NonNull String firstName, String lastName, String telegramId, String role) throws DuplicateEntityException;
+
+    void updateUser(String login, String password, @NonNull String firstName, String lastName, String telegramId, String role) throws EntityDoesnotExistException;
 
     void updatePassword(String login, String text) throws EntityDoesnotExistException;
 

@@ -25,4 +25,6 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     private String telegramId;
+    @Setter
+    private String role;
 }
