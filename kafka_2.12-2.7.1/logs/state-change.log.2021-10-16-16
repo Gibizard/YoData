@@ -1,0 +1,8 @@
+[2021-10-16 16:42:38,426] INFO [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers Set(0) for 0 partitions (state.change.logger)
+[2021-10-16 16:44:44,142] INFO [Controller id=0 epoch=1] Changed partition parsingResultsToSend-0 state from NonExistentPartition to NewPartition with assigned replicas 0 (state.change.logger)
+[2021-10-16 16:44:44,142] INFO [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers Set() for 0 partitions (state.change.logger)
+[2021-10-16 16:44:44,153] INFO [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers Set() for 0 partitions (state.change.logger)
+[2021-10-16 16:44:44,197] INFO [Controller id=0 epoch=1] Changed partition parsingResultsToSend-0 from NewPartition to OnlinePartition with state LeaderAndIsr(leader=0, leaderEpoch=0, isr=List(0), zkVersion=0) (state.change.logger)
+[2021-10-16 16:44:44,197] INFO [Controller id=0 epoch=1] Sending LeaderAndIsr request to broker 0 with 1 become-leader and 0 become-follower partitions (state.change.logger)
+[2021-10-16 16:44:44,197] INFO [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers Set(0) for 1 partitions (state.change.logger)
+[2021-10-16 16:44:44,208] INFO [Controller id=0 epoch=1] Sending UpdateMetadata request to brokers Set() for 0 partitions (state.change.logger)
