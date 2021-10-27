@@ -1,11 +1,18 @@
 package ru.lanit.bpm.demo.adapter.kafka;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@AllArgsConstructor
-@Getter
+@Data
 public class ParsingResultToSend {
     private String parsingResult;
     private String telegramId;
+
+    public ParsingResultToSend() {
+
+    }
+
+    public ParsingResultToSend(String parsingResult, String telegramId) {
+        this.parsingResult = parsingResult;
+        this.telegramId = telegramId;
+    }
 }
